@@ -7,7 +7,7 @@ app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URL') or "sqlite:///notepad.sqlite"
 # db = SQLAlchemy(app)
 
-app.config['MONGO_URI'] = environ.get('MONDODB_URI') or "mongodb://localhost:27017/notepad"
+app.config['MONGO_URI'] = environ.get('MONGODB_URI') or "mongodb://localhost:27017/notepad"
 mongo = PyMongo(app)
 
 # class Task(db.Model):
