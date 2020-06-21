@@ -6,6 +6,19 @@ function deleteTask(id) {
   });
 }
 
+function addTask(task) {
+  var data = {
+    task: task,
+  };
+
+  d3.json("/task", {
+    method: "POST",
+    body: JSON.stringify(data),
+  }).then(() => {
+    fetchTasks();
+  });
+}
+
 function fetchTasks() {
   d3.json("/tasks").then((tasks) => {
     var list = d3.select("#tasks");
@@ -29,14 +42,8 @@ fetchTasks();
 d3.select("#add-new-task").on("click", () => {
   var input = d3.select("#new-task");
   var value = input.property("value");
-  var data = {
-    task: value,
-  };
-
-  d3.json("/task", {
-    method: "POST",
-    body: JSON.stringify(data),
-  }).then(() => {
-    fetchTasks();
-  });
+  input.property("value", "");
+  addTask(value);
 });
+
+setInterval(() => fetchTasks(), 500);
