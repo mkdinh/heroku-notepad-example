@@ -14,7 +14,14 @@
         <div class="container mt-4">
             <div class="jumbotron">
             <h1 class="display-4 text-primary">Heroku Notepad</h1>
-            <h3 class='lead'>{{name}}'s Tasks</h3>
+            <form>
+                <div class="form-group">
+                    <label for="new-task">New Task</label>
+                    <input type="text" class="form-control" id="new-task" aria-describedby="new task">
+                    <small id="task-help" class="form-text text-muted">Add in a new task.</small>
+                </div>
+                <button type="button" id='add-new-task' class="btn btn-primary">Submit</button>
+            </form>
             <hr class="my-4">
             <ul id="tasks" class="list-group"></ul>
             <div>
