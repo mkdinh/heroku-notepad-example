@@ -19,6 +19,18 @@ function addTask(task) {
   });
 }
 
+function onSubmit() {
+  d3.event.preventDefault();
+  var input = d3.select("#new-task");
+  var value = input.property("value");
+  if (value.trim() === "") {
+    return;
+  }
+
+  input.property("value", "");
+  addTask(value);
+}
+
 function fetchTasks() {
   d3.json("/tasks").then((tasks) => {
     var list = d3.select("#tasks");
@@ -39,11 +51,7 @@ function fetchTasks() {
 
 fetchTasks();
 
-d3.select("#add-new-task").on("click", () => {
-  var input = d3.select("#new-task");
-  var value = input.property("value");
-  input.property("value", "");
-  addTask(value);
-});
+d3.select("#add-new-task").on("click", onSubmit);
+d3.select("#task-form").on("submit", onSubmit);
 
 setInterval(() => fetchTasks(), 500);
